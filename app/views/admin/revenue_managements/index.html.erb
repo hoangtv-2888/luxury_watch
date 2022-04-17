@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="statistics">
+    <%= line_chart @orders,
+        title: t("statistics_products"),
+        xtitle: t("day_of_the_week"),
+        ytitle: t("quantity") %>
+  </div>
+  <div class="statistics">
+    <%= line_chart @users,
+        title: t("statistics_users"),
+        xtitle: t("day_of_the_week"),
+        ytitle: t("quantity") %>
+  </div>
+</div>

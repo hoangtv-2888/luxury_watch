@@ -1,0 +1,53 @@
+address: "Glasglow Dr 40 Fe 72."
+tel: "1115550001"
+fax: "190-4509-494"
+email: "contact@example.com"
+facebook: "Facebook"
+twitter: "Twitter"
+google: "Google+"
+length_digit_6: 6
+length_digit_255: 255
+vi: "vi"
+en: "en"
+expired_password_time: 2
+items_per_page: 8
+pag_10: 10
+admin: 1
+user: 0
+quantity_defaut_1: 1
+comments_per_page: 4
+default_star: 0
+max_comment_length: 500
+min_star: 0
+max_star: 5
+default_step: 1
+max_name_length: 50
+min_val: 0
+image_format: ["image/png", "image/jpg", "image/jpeg"]
+image_size: 5
+resize_images: "125x200!"
+thumbnail: "50x50!"
+status_order_new: 0
+discount_default: "0%"
+number_100: 100
+code_default: 2
+order_wait: 0
+order_confirmed: 1
+order_shipping: 2
+order_delivered: 3
+order_rejected: 4
+order_returned: 5
+order_all: "all"
+max_percent: 100
+default_discount_percent: 0
+order_status:
+  wait: "wait"
+  confirmed: "confirmed"
+cost_step: 1_000_000
+number_of_select: 5
+items_hot_sell: 4
+size_hot_sell: 4
+number_30: 30
+number_10: 10
+number_1: 1
+hour_notify_day: "17:00 pm"

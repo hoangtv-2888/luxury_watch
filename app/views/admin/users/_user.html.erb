@@ -1,0 +1,16 @@
+<tr id="delete_user_<%= user.id %>">
+  <td><%= user.id %></td>
+  <td><%= link_to user.name, admin_user_path(user) %></td>
+  <td><%= user.email %></td>
+  <td><%= user.phone %></td>
+  <td><%= user.current_sign_in_ip %></td>
+  <td><%= user.last_sign_in_ip %></td>
+  <td><%= user.sign_in_count %></td>
+  <td><%= user.current_sign_in_at %></td>
+  <td><%= user.last_sign_in_at %></td>
+  <td>
+    <%= link_to admin_user_path(user), remote: :true, method: :delete, data: {confirm: t("you_sure")} do %>
+      <%= image_tag user.deleted? ? "restore.png" : "delete.png", class: "icon_delete"%></a>
+    <% end %>
+  </td>
+</tr>
