@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2022_04_17_142801) do
 
-  create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
-    t.text "body", size: :long
+    t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -44,27 +47,27 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admin_blogs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "admin_blogs", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "desc"
   end
 
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "desc"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comment_rates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comment_rates", force: :cascade do |t|
     t.text "content"
     t.integer "star"
     t.bigint "user_id", null: false
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["user_id"], name: "index_comment_rates_on_user_id"
   end
 
-  create_table "discounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "discounts", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
     t.integer "percent"
@@ -84,9 +87,9 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.string "code"
   end
 
-  create_table "order_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_details", force: :cascade do |t|
     t.integer "quantity"
-    t.decimal "price_at_order", precision: 10
+    t.decimal "price_at_order"
     t.bigint "order_id", null: false
     t.bigint "product_detail_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["product_detail_id"], name: "index_order_details_on_product_detail_id"
   end
 
-  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer "status"
     t.string "user_name_at_order"
     t.string "address_at_order"
@@ -111,16 +114,16 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "product_colors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "product_colors", force: :cascade do |t|
     t.string "color"
     t.string "desc"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "product_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "product_details", force: :cascade do |t|
     t.integer "quantity"
-    t.decimal "price", precision: 10
+    t.decimal "price"
     t.bigint "product_id", null: false
     t.bigint "product_size_id", null: false
     t.bigint "product_color_id", null: false
@@ -132,14 +135,14 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["product_size_id"], name: "index_product_details_on_product_size_id"
   end
 
-  create_table "product_sizes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "product_sizes", force: :cascade do |t|
     t.integer "size"
     t.string "desc"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "desc"
     t.string "type"
@@ -152,7 +155,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_142801) do
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "phone"

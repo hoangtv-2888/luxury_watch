@@ -7,9 +7,9 @@ Category.create(name: "Omega")
 Category.all.pluck(:name, :id).each do |name, id|
   10.times do |n|
     product = Product.create!(name: "#{name} #{n+1}",
-                  desc: Faker::Lorem.sentence(word_count: 15),
+                  desc: "#{name} thương hiệu đồng hồ uy tín, giúp bạn nổi bật trước đám đông",
                   type: "",
-                  material: Faker::Construction.material,
+                  material: "",
                   category_id: id)
     product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
     product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
