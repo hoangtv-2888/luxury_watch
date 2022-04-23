@@ -79,6 +79,10 @@ class Product < ApplicationRecord
     image.variant(resize: Settings.thumbnail).processed if image.present?
   end
 
+  def display_305_440 image
+    image.variant(resize: "305x440!").processed if image.present?
+  end
+
   def qua_pro_first
     product_detail.first.quantity if product_detail.first.present?
   end

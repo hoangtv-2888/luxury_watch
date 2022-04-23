@@ -1,3 +1,4 @@
+
 <div class="single contact">
   <div class="container">
     <div class="single-main">
@@ -5,11 +6,43 @@
         <div class="sngl-top">
           <div class="col-md-5 single-top-left">
             <div class="d-flex flex-wrap">
-              <% if @product.images.attached? %>
-                <% @product.images.each do |img| %>
-                    <%= image_tag @product.display_image(img) %>
+            
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+
+                <div class="item active">
+                  <% if @product.images.attached? %>
+                    <%= image_tag @product.display_305_440(@product.images.first) %>
+                  <% end %>
+                </div>
+                <% if @product.images.attached? %>
+                  <% @product.images.each do |img| %>
+                <div class="item">
+                      <%= image_tag @product.display_305_440(img) %>
+                </div>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+
             </div>
           </div>
           <div class="col-md-7 single-top-right">
@@ -29,7 +62,6 @@
               <h5 class="item_price price_product_detail">
                 <%= @product.product_detail.any? ? number_to_currency(@product.product_detail.minimum(:price)) : t("contact_now") %>
               </h5>
-              <p><%= @product.desc %></p>
               <div class="available">
                 <ul class="select_option" data-product_id=<%= @product.id %>>
                   <li><%= t "color" %>
@@ -65,10 +97,10 @@
                 <li><span>SKU</span>
                 <span class="women1">: CK09</span></li>
               </ul>
-              <div class="add_to_cart">
+              <div class="add_to_cart" >
                 <%= form_tag add_to_cart_path(@product.product_detail.first.id) do %>
                   <%= hidden_field_tag :product_detail_id, @product.product_detail.first.id, id: "product_detail_id" %>
-                  <%= submit_tag t("add_to_cart"), class: "btn btn-primary add_cart" %>
+                  <%= submit_tag t("add_to_cart"), class: "btn btn-primary add_cart", style: "margin-top: 17px;"%>
                 <% end %>
               </div>
             </div>
@@ -80,20 +112,51 @@
           <h3><%= t "desc" %></h3>
           <p><%= @product.desc %><p>
         </div>
-        <div>
+        <!-- Contenedor Principal -->
+        <div class="comments-container">
           <h3><%= t "review" %></h3>
-          <% @comments.each do |comment| %>
-            <div>
-              <strong><%= comment.user.name %> (<%= time_ago_in_words(comment.created_at) %>)<br/></strong>
-              <% comment.star.times do %>
-                <%= image_tag "star.png" %>
-              <% end %>
-            </div>
-            <p><%= comment.content %></p>
-            <% if can? :destroy, comment %>
-              <%= link_to t("delete"), comment, method: :delete, data:{confirm: t("are_you_sure")}, class: "text-danger" %>
+
+          <ul id="comments-list" class="comments-list">
+            <% @comments.each do |comment| %>
+              <li>
+                <div class="comment-main-level">
+                  <!-- Avatar -->
+                  <div class="comment-avatar"><%= image_tag "default_avt.jpg" %></div>
+                  <!-- Contenedor del Comentario -->
+                  <div class="comment-box">
+                    <div class="comment-head">
+                      <h6 class="comment-name"><%= comment.user.name %></h6>
+                      <span>
+                        <%= time_ago_in_words(comment.created_at) %> <%= t "ago" %> 
+                      </span>
+                      <span style="margin-left: 5px">
+                        <% comment.star.times do %>
+                          <span class="glyphicon glyphicon-star" style="color: #ffe234; margin-top: -5px"></span>
+                        <% end %>
+                        <% (5 - comment.star).times do %>
+                          <span class="glyphicon glyphicon-star" style="margin-top: -5px"></span>
+                        <% end %>
+                      </span>
+                      <i>
+                        <% if can? :destroy, comment %>
+                          <a href="<%= comment_rate_path comment %>" data-method="delete" data-confirm="<%= t("are_you_sure") %>"><span class="glyphicon glyphicon-trash"></span></a>
+                        <% end %>
+                      </i>
+                      <i>
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                      </i>
+                      <i>
+                        <span class="glyphicon glyphicon-thumbs-up"></span> 
+                      </i>
+                    </div>
+                    <div class="comment-content">
+                      <%= comment.content %>
+                    </div>
+                  </div>
+                </div>
+              </li>
             <% end %>
-          <% end %>
+          </ul>
         </div>
       </div>
       <div class="latestproducts">
@@ -101,10 +164,13 @@
           <%= form_for @comment_rate do |f| %>
             <%= f.text_area :content, class: "form-control", placeholder: t("your_comment") %>
             <%= f.hidden_field :product_id, value: @product.id %>
-            <%= label_tag t("star") %>
-            <%= f.number_field :star, value: Settings.default_star,
-                                      class: "form-control",
-                                      min: Settings.min_star, max: Settings.max_star, step: Settings.default_step %>
+            <div class="rating"> 
+              <%= f.radio_button :star , 5 %><label for="comment_rate_star_5">☆</label> 
+              <%= f.radio_button :star , 4 %><label for="comment_rate_star_4">☆</label> 
+              <%= f.radio_button :star , 3 %><label for="comment_rate_star_3">☆</label> 
+              <%= f.radio_button :star , 2 %><label for="comment_rate_star_2">☆</label> 
+              <%= f.radio_button :star , 1 %><label for="comment_rate_star_1">☆</label> 
+            </div>
             <%= f.submit t("submit"), class: "btn btn-primary mt-5" %>
           <% end %>
         <% end %>
@@ -127,7 +193,44 @@
           </div>
         </div>
       </div>
-      <%= render "shared/choose_options" %>
+				<div class="col-md-3 single-right">
+					<div class="w_sidebar">
+						<section  class="sky-form">
+							<h4><%= t "category" %></h4>
+							<div class="row1 row2 scroll-pane">
+								<div class="col col-4">
+									<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i><%= @product.category.name %></label>
+								</div>
+								<div class="col col-4">
+                  <% Category.all.pluck(:name).each do |category| %>
+									  <label class="checkbox"><input type="checkbox" name="checkbox"><i></i><%= category %></label>
+                  <% end %>
+								</div>
+							</div>
+						</section>
+						<section class="sky-form">
+							<h4>Colour</h4>
+								<ul class="w_nav2">
+									<li><a class="color5" href="#"></a></li>
+									<li><a class="color6" href="#"></a></li>
+									<li><a class="color7" href="#"></a></li>
+									<li><a class="color8" href="#"></a></li>
+									<li><a class="color9" href="#"></a></li>
+									<li><a class="color10" href="#"></a></li>
+								</ul>
+						</section>
+						<section class="sky-form">
+							<h4>discount</h4>
+							<div class="row1 scroll-pane" style="height: auto">
+								<div class="col col-4">
+									<label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
+									<label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
+									<label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
       <div class="clearfix"> </div>
     </div>
   </div>
