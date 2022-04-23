@@ -260,3 +260,6 @@ en:
   notify_order_admin: "You have an order that needs to be confirmed, %{link_notify_order_admin}"
   link_notify_order_admin: "details here"
   notify_approve_order: "Order Confirmation Notice"
+  settings_account: "Settings Account"
+  ago: "ago"
+  learn_more: "Learn more"

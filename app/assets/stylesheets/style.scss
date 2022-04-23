@@ -302,30 +302,31 @@ span.simpleCart_total {
   opacity: 0;
 }
 /* DROP DOWN LIST */
-.dropdown ul{
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  list-style: none;
-  overflow: hidden;
-  padding:0;
-  background:#000;
-}
-.dropdown.scrollable.open ul{
-  overflow-y: auto;
-}
-/* DROP DOWN LIST ITEMS */
-.dropdown li{
-  list-style: none;
-  padding:8px;
-  border-bottom: 1px solid #73B6E1;
-}
-.dropdown li:last-child {
-  border-bottom: 0;
-}
+// .dropdown ul{
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   height: 100%;
+//   width: 100%;
+//   list-style: none;
+//   overflow: hidden;
+//   padding:0;
+//   background:#000;
+// }
+// .dropdown.scrollable.open ul{
+//   overflow-y: auto;
+// }
+// /* DROP DOWN LIST ITEMS */
+// .dropdown li{
+//   list-style: none;
+//   padding:8px;
+//   border-bottom: 1px solid #73B6E1;
+// }
+// .dropdown li:last-child {
+//   border-bottom: 0;
+// }
 /* .focus class is also added on hover */
+
 .dropdown li.focus{
   background:#73B6E1;
   position: relative;

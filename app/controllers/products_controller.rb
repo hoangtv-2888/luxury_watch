@@ -1,6 +1,14 @@
 class ProductsController < ApplicationController
   before_action :load_product, only: :show
 
+  def index
+    @q = Product.includes(:category, :product_detail).ransack(params[:q])
+    @products = @q.result(distinct: true)
+    @pagy, @products = pagy @products, items: Settings.items_per_page
+    @hot_sell = Product.hot_sell(Settings.size_hot_sell)
+    load_filter_options
+  end
+
   def show
     @pagy, @comments = pagy @product.comment_rates.newest,
                             items: Settings.comments_per_page
@@ -22,5 +30,11 @@ class ProductsController < ApplicationController
     end
     @product_color = @product_color.uniq
     @product_size = @product_size.uniq
+  end
+
+  def load_filter_options
+    @categories = Category.pluck(:name, :id).unshift([t("all"), nil])
+    @colours = ProductColor.pluck(:color, :id).unshift([t("all"), nil])
+    @sizes = ProductSize.pluck(:size, :id).unshift([t("all"), nil])
   end
 end

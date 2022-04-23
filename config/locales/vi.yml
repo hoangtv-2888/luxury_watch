@@ -258,3 +258,6 @@ vi:
   notify_order_admin: "Bạn có đơn hàng cần được xác nhận, %{link_notify_order_admin}"
   link_notify_order_admin: "chi tiết tại đây"
   notify_approve_order: "Thông báo xác nhận đơn hàng"
+  settings_account: "Cài đặt tài khoản"
+  ago: "trước"
+  learn_more: "Xem thêm"

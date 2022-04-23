@@ -2,10 +2,17 @@
   <div class="product-main simpleCart_shelfItem">
     <%= image_tag product.display_image(product.images.first) if product.images.attached? %>
     <div class="product-bottom">
-      <h3><%= link_to product.name, product %></h3>
-      <p><%= t "explore_now" %></p>
-      <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">
-        <%= t "only"%> <%= product.product_detail.any? ? number_to_currency(product.product_detail.minimum(:price)) : t("contact_now") %>
+      <h3 style="text-align:center"><%= link_to product.name, product %></h3>
+      <div style="display: flex; justify-content: center">
+        <% load_avg_star(product).times do %>
+          <span style="font-size:15px; color: #ffe234" class="glyphicon glyphicon-star"></span>
+        <% end %>
+        <% (5 - load_avg_star(product)).times do%>
+        <span style="font-size:15px;" class="glyphicon glyphicon-star-empty"></span>
+        <% end %>
+      </div>
+      <h4><a class="item_add" href="<%= product_path product %>"><i></i></a> <span class=" item_price">
+        <%= t("only") %> <%= product.product_detail.any? ? number_to_currency(product.product_detail.minimum(:price)) : t("contact_now") %>
       </span></h4>
     </div>
     <div class="srch srch1">

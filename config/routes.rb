@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     post "/update_cart", to: "carts#update"
     delete "/remove_from_cart/:id", to: "carts#destroy", as: "remove_from_cart"
     get "/check_code", to: "discounts#show", as: "check_code"
+    resources :blogs
     as :user do
       get "/login", to: "devise/sessions#new"
       post "/login", to: "devise/sessions#create"
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
       resources :products
       resources :orders
       resources :revenue_managements, only: %i(index)
+      resources :blogs
 
       get "/list-user-delete", to: "users#list_users_delete"
       get "/search-users", to: "users#search", as: "search_users"

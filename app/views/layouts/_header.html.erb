@@ -1,51 +1,56 @@
-<div class="top-header">
+<nav class="navbar navbar-inverse">
   <div class="container">
-    <div class="top-header-main">
-      <div class="col-lg-6 top-header-left">
-        <div class="box" id="choose-language">
-          <span><%= t "languages" %></span>
-          <ul class="sub-language">
-            <li><%= link_to t("english"), locale: :en %></li>
-            <li><%= link_to t("vietnamese"), locale: :vi %></li>
-          </ul>
-        </div>
-        <div class="box" id="profile">
-          <span><%= t "profile" %></span>
-          <ul class="sub-profile">
-            <% if user_signed_in? %>
-              <li><%= link_to t("logout"), logout_path, method: :delete %></li>
-              <li><%= link_to t("settings"), edit_user_registration_path(current_user) %></li>
-              <li><%= link_to t("my_order"), orders_path %></li>
-            <% else %>
-              <li><%= link_to t("login"), login_path %></li>
-              <li><%= link_to t("singup"), signup_path %></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="box">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class=" navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <% if user_signed_in? %>
-            <span><%= current_user.name %></span>
-            <% if current_user.admin? %>
-              <span class="admin-page"><%= link_to t("admin.admin"), admin_root_path %></span>
-            <% end %>
+            <%= current_user.name %>
+          <% else %>
+            Luxury Watches
           <% end %>
-        </div>
+        <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu", style="margin-left: 12%">
+          <li><a href="/users/edit"><%= t("settings_account") %></a></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to t("my_order"), orders_path %></li>
+        </ul>
       </div>
-      <div class="top-header-left">
-        <div class="cart box_1">
-          <%= link_to cart_path do %>
-            <div class="total">
-              <span class="simpleCart_total">
-                <span class="badge"><%= total_cart %></span>
-                <%= image_tag "cart-1.png" %>
-              </span>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <ul class="nav navbar-nav">
+        <% if params[:locale] == "en" %>
+          <li><a href="/en" style="color: red">EN | </a></li>
+          <li style="margin-left: -24px"><a href="/vi">VI</a></li>
+        <% elsif params[:locale] == "vi" %>
+          <li><a href="/en">EN | </a></li>
+          <li style="margin-left: -24px"><a href="/vi" style="color: red">VI</a></li>
+        <% end %>
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <% if current_user&.admin? %>
+          <li><%= link_to t("admin.admin"), admin_root_path %></li>
+        <% end %>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="<%= cart_path %>">
+            <span style="font-size: 20px;" class="glyphicon glyphicon-shopping-cart"></span>
+            <span class="badge" style="color: white; background-color: red; margin-left: -13px; margin-top: -8px; position: absolute"><%= total_cart %></span>
+          </a>
+        </li>
+
+        <% if user_signed_in? %>
+          <li><a href="<%= logout_path %>" data-method="delete"><span class="glyphicon glyphicon-user"></span> <%= t("logout") %></a></li>
+        <% else %>
+          <li><a href="<%= login_path %>"><span class="glyphicon glyphicon-log-in"></span> <%= t("login") %></a></li>
+          <li><a href="<%= signup_path %>"><span class="glyphicon glyphicon-user"></span> <%= t("signup") %></a></li>
+        <% end %>
+      </ul>
     </div>
   </div>
-</div>
+</nav>
+
 <div class="logo">
   <%= link_to root_path do %>
     <h1><%= t "app_name" %></h1>
@@ -58,7 +63,10 @@
       <div class="top-nav">
         <ul class="memenu skyblue"><li class="active"><%= link_to t("home"), root_path %></li>
           <li class="grid">
-            <%= link_to t("product"), root_path %>
+            <%= link_to t("product"), products_path %>
+          </li>
+          <li class="grid">
+            <%= link_to t("blog"), blogs_path %>
           </li>
           <li class="grid">
             <%= link_to t("contact"), contact_path %>
@@ -66,14 +74,6 @@
         </ul>
       </div>
       <div class="clearfix"> </div>
-    </div>
-    <div class="col-md-3 header-right">
-      <div class="search-bar">
-        <%= search_form_for Product.ransack(), url: homes_path, class: "form-inline" do |f| %>
-          <%= f.search_field :name_or_desc_cont, placeholder: t("search"), class: "form-control" %>
-          <%= f.submit t("search"), {class: "btn btn-primary"} %>
-        <% end %>
-      </div>
     </div>
     <div class="clearfix"> </div>
     </div>

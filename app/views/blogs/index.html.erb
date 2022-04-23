@@ -1,0 +1,13 @@
+<div class="blog" style="width: 671px; margin: 0 auto">
+  <% @blogs.each do |blog| %>
+    <h3 class="blog-title" style="width: 671px;"><%= link_to blog.title, blog_path(blog)%></h3>
+    <%= image_tag blog.display_image(blog.image) %>
+    <p style="width: 671px; margin-top: 10px"><%= blog.desc %></p>
+    <div style="display: flex; justify-content: space-between; width: 671px;">
+      <p><b><%= time_ago_in_words blog.created_at %> <%= t "ago" %></b></p>
+      <button type="button" class="btn btn-default"><%= link_to t("learn_more"), blog_path(blog)%></button>
+    </div>
+  <hr/>
+  <% end %>
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>

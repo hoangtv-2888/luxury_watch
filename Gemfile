@@ -40,7 +40,7 @@ gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 gem "webpacker", "~> 5.0"
 gem "whenever", require: false
 group :development, :test do
-  gem "byebug", platforms: %i(mri mingw x64_mingw)
+  gem "pry-rails", platforms: %i(mri mingw x64_mingw)
   gem "database_cleaner"
   gem "rspec-rails", "~> 4.0.1"
   gem "rubocop", "~> 0.74.0", require: false
