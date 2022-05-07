@@ -590,9 +590,9 @@ figure.effect-bubba:hover p,figure.effect-bubba:hover h2 {
   padding: 1em 0px 2.7em 0px;
   border:1px solid #ECEAEA;
 }
-.product {
-    padding: 3em 0px 6em 0px;
-}
+// .product {
+//     padding: 3em 0px 6em 0px;
+// }
 .product-bottom h3 {
   font-size: 16px;
   color: #000;
@@ -618,9 +618,9 @@ figure.effect-bubba:hover p,figure.effect-bubba:hover h2 {
   background: image-url("cart-3.png") no-repeat;
 }
 .product-bottom {
-  text-align: left;
+  // text-align: left;
   margin-top: 20px;
-  padding-left: 30px;
+  // padding-left: 30px;
 }
 .product-bottom p {
   font-size: 12px;
@@ -1870,9 +1870,9 @@ h3.ghj {
   .about {
     padding: 4.5em 0px 3em 0px;
   }
-  .product {
-    padding: 3em 0px 5em 0px;
-  }
+  // .product {
+  //   padding: 3em 0px 5em 0px;
+  // }
   .memenu>li>.mepanel {
     top: 45px !important;
   }
@@ -3368,4 +3368,33 @@ body {
 }
 .rating:hover>input:checked~label:before {
   opacity: 0.4
+}
+
+.line-center{
+  margin:0;padding:0 15px;
+  background:#fff;
+  display:inline-block;
+  border-radius: 5px;
+}
+.h31{
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+.h31:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+  border-top:1px solid #ebebeb;
+  z-index:-1;
+  margin: 0px 15px;
+}
+
+.famous-brand{
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  margin-bottom: 15px;
 }

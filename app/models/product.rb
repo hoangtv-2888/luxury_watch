@@ -17,7 +17,7 @@ class Product < ApplicationRecord
   validates :images,
             content_type:
             {
-              in: Settings.image_format,
+              # in: Settings.image_format,
               message: I18n.t("invalid_format")
             },
             size:

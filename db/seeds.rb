@@ -1,20 +1,25 @@
 Category.create(name: "Casio")
-Category.create(name: "Philippe")
-Category.create(name: "Heuer")
-Category.create(name: "Rolex")
-Category.create(name: "Omega")
+Category.create(name: "Gsock")
+# Category.create(name: "Heuer")
+# Category.create(name: "Rolex")
+# Category.create(name: "Omega")
 
 Category.all.pluck(:name, :id).each do |name, id|
   10.times do |n|
-    product = Product.create!(name: "#{name} #{n+1}",
+    product = Product.create!(name: "#{name} MTP-1302D-7A1VDF#{n+1}",
                   desc: "#{name} thương hiệu đồng hồ uy tín, giúp bạn nổi bật trước đám đông",
                   type: "",
                   material: "",
                   category_id: id)
-    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
-    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
-    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
-    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
+    if n % 2 == 0
+      product.images.attach(io: File.open("app/assets/images/#{name.downcase}11.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg image/webp])
+      product.images.attach(io: File.open("app/assets/images/#{name.downcase}12.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg image/webp])
+      product.images.attach(io: File.open("app/assets/images/#{name.downcase}13.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg image/webp])
+    else
+      product.images.attach(io: File.open("app/assets/images/#{name.downcase}21.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg image/webp])
+      product.images.attach(io: File.open("app/assets/images/#{name.downcase}22.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg image/webp])
+      product.images.attach(io: File.open("app/assets/images/#{name.downcase}23.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg image/webp])  
+    end
   end
 end
 
@@ -27,19 +32,66 @@ ProductColor.create(color: "Black", desc: "")
 ProductColor.create(color: "Red", desc: "")
 ProductColor.create(color: "Green", desc: "")
 
-price = [1000000, 2000000, 3000000, 4000000]
-Product.all.each do |product|
-  5.times do |n|
-    ProductDetail.create(quantity: rand(50..100),
-      price: price[rand(3)] + n*50000,
-      product_id: product.id,
-      product_size_id: ProductSize.pluck(:id).sample,
-      product_color_id: ProductColor.pluck(:id).sample)
+
+Product.all.pluck(:id).each do |id|
+  3.times do |n|
+    if id <= 5
+      ProductDetail.create(quantity: rand(50..100),
+        price: 8_00_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    elsif id <= 10
+      ProductDetail.create(quantity: rand(50..100),
+        price: 1_000_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    elsif id <= 15
+      ProductDetail.create(quantity: rand(50..100),
+        price: 1_050_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)    
+    elsif id <= 20
+      ProductDetail.create(quantity: rand(50..100),
+        price: 1_100_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    elsif id <= 25
+      ProductDetail.create(quantity: rand(50..100),
+        price: 1_200_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    elsif id <= 30
+      ProductDetail.create(quantity: rand(50..100),
+        price: 2_000_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    elsif id <= 35
+      ProductDetail.create(quantity: rand(50..100),
+        price: 2_100_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    elsif id <= 40
+      ProductDetail.create(quantity: rand(50..100),
+        price: 3_050_000,
+        product_id: id,
+        product_size_id: ProductSize.pluck(:id).sample,
+        product_color_id: ProductColor.pluck(:id).sample)
+    else
+    end
+
+
   end
 end
 
-User.create!(name: "Example User",
-            address: "quang nam",
+User.create!(name: "việt hoàng",
+            address: "Xuân Hoà, Xuân Trường, Nam Định",
             phone: "0239583958",
             email: "admin@gmail.com",
             password: "123456",

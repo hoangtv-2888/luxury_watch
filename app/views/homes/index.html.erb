@@ -11,26 +11,24 @@
     <div class="carousel-inner">
 
       <div class="item active">
-        <img src="web/images/bnr-1.jpg" alt="Chicago" style="width:100%;">
+        <%# <img src="web/images/bnr-1.jpg" alt="Chicago" style="width:100%;"> %>
+        <%= image_tag "banner_3.webp", style: "width:100%; height: 350px" %>
         <div class="carousel-caption">
-          <h3>Los Angeles</h3>
-          <p>LA is always so much fun!</p>
+
         </div>
       </div>
 
       <div class="item">
-        <img src="web/images/bnr-2.jpg" alt="Chicago" style="width:100%;">
+        <%= image_tag "banner_2.webp", style: "width:100%; height: 350px" %>
         <div class="carousel-caption">
-          <h3>Chicago</h3>
-          <p>Thank you, Chicago!</p>
+
         </div>
       </div>
 
       <div class="item">
-        <img src="web/images/bnr-3.jpg" alt="Chicago" style="width:100%;">
+        <%= image_tag "banner_1.webp", style: "width:100%; height: 350px" %>
         <div class="carousel-caption">
-          <h3>New York</h3>
-          <p>We love the Big Apple!</p>
+
         </div>
       </div>
 
@@ -49,19 +47,15 @@
 </div>
 <div class="product">
   <div class="container">
+    <h3 class="h31"><span  class="line-center" style="background-color: #ff6600; color: #ffffff;"><%= t "new_product" %></span></h3>
     <div class="product-top">
       <div class="product-one">
         <%= render partial: "shared/item_product", collection: @products, as: :product %>
       </div>
     </div>
   </div>
-  <div class="container" style="padding-left: 30px">
-    <%== pagy_bootstrap_nav(@pagy) %>
-  </div>
   <div class="container">
-  <div class="row justify-content-center">
-    <h1 class="text-center"><%= t "hot_sell" %></h1>
-  </div>
+    <h3 class="h31"><span  class="line-center" style="background-color: #ff6600; color: #ffffff"><%= t "hot_sell" %></span></h3>
     <div class="product-top">
       <div class="product-one">
         <%= render partial: "shared/item_product", collection: @hot_sell, as: :product %>
@@ -69,3 +63,12 @@
     </div>
   </div>
 </div>
+  <div class="container">
+    <h3 class="h31"><span  class="line-center" style="background-color: #ff6600; color: #ffffff"><%= t "famous_brand" %></span></h3>
+    <div class="famous-brand">
+      <a href="#"><%= image_tag "casio_category.webp"%></a>
+      <a href="#"><%= image_tag "gshock_category.webp"%></a>
+      <a href="#"><%= image_tag "ck_category.webp"%></a>
+      <a href="#"><%= image_tag "orient_category.webp"%></a>
+    </div>
+  </div>
