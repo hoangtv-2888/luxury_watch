@@ -15,8 +15,8 @@
         <thead>
           <tr>
             <th scope="col" class="text-uppercase header"><%= t "name_product" %></th>
-            <th scope="col" class="text-uppercase"><%= t "quatity" %></th>
-            <th scope="col" class="text-uppercase"><%= t "quatity" %></th>
+            <th scope="col" class="text-uppercase"><%= t "detail" %></th>
+            <th scope="col" class="text-uppercase"><%= t "quantity" %></th>
             <th scope="col" class="text-uppercase"><%= t "price_each" %></th>
             <th scope="col" class="text-uppercase"><%= t "total" %></th>
           </tr>
@@ -31,7 +31,7 @@
         <%= form_for(:discounts, url: check_code_path, remote: true, method: "get") do %>
           <%= text_field_tag :code, nil, class: "form-control input-discount" %>
           <%= hidden_field_tag :total, total_money_cart %>
-          <%= submit_tag t("send"), class: "btn btn-primary" %>
+          <%= submit_tag "Áp dụng", class: "btn btn-primary" %>
         <% end %>
       </div>
    </div>

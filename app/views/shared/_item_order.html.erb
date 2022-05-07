@@ -1,7 +1,11 @@
 <tr id="quantity_<%= product_detail.id %>">
   <td class="item">
     <div class="d-flex align-items-start">
+    <% if product_detail.product.images.attached? %>
+      <div class="thumb-image"><%= image_tag product_detail.product.images.first, class: "img-responsive" %></div>
+    <% else %>
       <div class="thumb-image"><%= image_tag "p-1.png", class: "img-responsive" %></div>
+    <% end %>
       <div><%= product_detail.product.name %></div>
     </div>
   </td>
