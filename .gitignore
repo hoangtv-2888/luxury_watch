@@ -60,6 +60,7 @@ test
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+public/javascripts/translations.js
 
 .vscode/*
 
@@ -69,4 +70,3 @@ config/environments/*.local.yml
 
 # Ignore application configuration
 /config/application.yml
-translation.js

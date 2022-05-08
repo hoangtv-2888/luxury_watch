@@ -186,7 +186,7 @@ vi:
         rejected: "Hủy"
         returned: "Đã hoàn hàng"
   delete_product: "Bạn có muốn xóa sản phẩm này không?"
-  delete: "Xoa"
+  delete: "X"
   total_product: "Tổng sản phẩm"
   cart: "Giỏ hàng"
   name_product: "Tên sản phẩm"
