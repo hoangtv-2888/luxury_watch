@@ -4,10 +4,15 @@
   <td><%= image_tag product.display_thumbnail(product.images.first) if product.images.attached? %>
   <td><%= product.product_detail.sum(:quantity) %></td>
   <td><%= l(product.created_at, format: :short) %></td>
-  <td><%= link_to t("edit"), edit_admin_product_path(product),
-                             class: "btn btn-sm btn-warning" %>
-      <%= link_to t("delete"), admin_product_path(product),
-                               method: :delete, class: "btn btn-danger",
-                               data: {confirm: t("are_you_sure")} %>
+  <td><%= link_to edit_admin_product_path(product) do %>
+        <i class="fa fa-fw fa-wrench font-site-25"></i>
+      <% end %>
+      <%= link_to admin_product_path(product),
+                               method: :delete, 
+                               style: "color: red",
+                               data: {confirm: t("are_you_sure")} do %>
+
+        <i class="fa fa-fw fa-remove font-site-25"></i>
+      <% end %>
   </td>
 </tr>

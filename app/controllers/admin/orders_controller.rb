@@ -22,7 +22,7 @@ class Admin::OrdersController < Admin::AdminController
     else
       flash[:danger] = t "error"
     end
-    redirect_to admin_orders_path
+    redirect_back fallback_location: admin_orders_path
   end
 
   private
@@ -43,7 +43,7 @@ class Admin::OrdersController < Admin::AdminController
     else
       flash[:warning] = t "not_found"
     end
-    redirect_to admin_orders_path
+    redirect_back fallback_location: admin_orders_path
   end
 
   def valid_status? status

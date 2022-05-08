@@ -7,7 +7,7 @@
     <% end %>
   </td>
   <td><%= order.created_at.strftime("%H:%M %d-%m-%Y") %></td>
-  <td><span class="badge btn-<%= order.status %>"><%= t "order_status.#{order.status}" %><span></td>
+  <td><span class="label pull-left btn-<%= order.status %>"><%= t "order_status.#{order.status}" %><span></td>
   <% case order.status.to_sym %>
   <% when :wait %>
     <td><%= render partial: "status_form", locals: {order: order, status: :confirmed} %></td>

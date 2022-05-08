@@ -8,9 +8,9 @@
   <td>
     <%= link_to admin_user_path(user), remote: :true, method: :delete, data: {confirm: t("you_sure")}, style: "color: red" do %>
       <% if user.deleted? %>
-        <i class="fa fa-fw fa-reply-all icon_delete "></i>
+        <i class="fa fa-fw fa-reply-all icon_delete font-site-25"></i>
       <% else %>
-        <i class="fa fa-fw fa-remove icon_delete red_color"></i>
+        <i class="fa fa-fw fa-remove icon_delete  font-site-25"></i>
       <% end %>
     <% end %>
   </td>
