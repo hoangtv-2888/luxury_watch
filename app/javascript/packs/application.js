@@ -12,14 +12,17 @@ import "chartkick/chart.js"
 
 require("./jquery-1.11.0.min")
 require("./flexslider.js")
-require("./imagezoom.js")
 require("./memenu.js")
 require("./jquery.easydropdown.js")
 require("./custom.js")
 require("jquery")
 require("@nathanvda/cocoon")
+require("admin-lte")
 import "bootstrap/dist/css/bootstrap"
 import "bootstrap/dist/js/bootstrap"
+import "admin-lte/dist/css/AdminLTE.css"
+import "admin-lte/dist/css/skins/_all-skins.css"
+import "font-awesome/css/font-awesome.css"
 global.toastr = require("toastr")
 Rails.start()
 Turbolinks.start()

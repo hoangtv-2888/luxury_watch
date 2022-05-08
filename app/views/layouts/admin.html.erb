@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<% if false %>
 <html>
   <head>
     <title>Ruby2022LuxuryWatch</title>
@@ -23,5 +24,38 @@
       </div>
     </div>
     <script src="https://kit.fontawesome.com/32e59fa580.js" crossorigin="anonymous"></script>
+  </body>
+</html>
+<% end %>
+<html>
+  <head>
+    <title>Luxyry Admin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "status_color" %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="hold-transition skin-blue sidebar-mini">
+      <div class="wrapper">
+        <%= render "base/header" %>
+        <%= render "base/sidebar" %>
+
+        <div class="content-wrapper">
+          <section class="content-header">
+            <ol class="breadcrumb">
+              <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+              <li class="active">Here</li>
+            </ol>
+          </section>
+
+          <section class="content container-fluid">
+            <%= yield %>
+          </section>
+        </div>
+
+        <%= render "base/footer" %>
+        <%= render "base/control_sidebar" %>
+      <div>
   </body>
 </html>

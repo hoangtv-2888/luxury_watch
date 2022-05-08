@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::AdminController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result
-    @pagy, @users = pagy @users, items: Settings.pag_10
+    @pagy, @users = pagy @users, items: 20
   end
 
   def destroy

@@ -1,0 +1,76 @@
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <%= image_tag "default_avt.jpg", class:  "img-circle"%>
+        </div>
+        <div class="pull-left info">
+          <p><%= current_user.name %></p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">Quản lý</li>
+
+        <!-- Optionally, you can add icons to the links -->
+        <li >
+          <%= link_to admin_dashboard_index_path do %>
+            <i class="fa fa-dashboard"></i> Dashboard</span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to admin_users_path do %>
+            <i class="fa fa-book"></i> <span><%= t "all_users" %></span>
+          <% end %>
+        </li>
+
+        <li >
+          <%= link_to admin_revenue_managements_path do %>
+            <i class="fa fa-pie-chart"></i> <span><%= t "statistics" %></span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to admin_orders_path do %>
+            <i class="fa fa-edit"></i> <span><%= t "all_order" %></span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to admin_categories_path do %>
+            <i class="fa fa-laptop"></i>
+            <span><%= t "all_categories" %></span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to admin_products_path do %>
+            <i class="fa fa-laptop"></i>
+            <span><%= t "all_product" %></span>
+          <% end %>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
