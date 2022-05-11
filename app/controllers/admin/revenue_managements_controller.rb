@@ -1,6 +1,13 @@
 class Admin::RevenueManagementsController < Admin::AdminController
   before_action :load_orders, :load_users
-  def index; end
+  def index
+    @q = OrderDetail.ransack(params[:q])
+    if params.dig(:q, :created_at_gteq).present? || params.dig(:q, :created_at_lteq).present?
+      @order_detail = @q.result
+    else
+      @order_detail = []
+    end
+  end
 
   private
   def load_orders

@@ -32,8 +32,10 @@
     <title>Luxyry Admin</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "status_color" %>
+    <%= stylesheet_link_tag "status_color", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "status_color", "data-turbolinks-track": "reload" %>
+
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini">
@@ -57,5 +59,8 @@
         <%= render "base/footer" %>
         <%= render "base/control_sidebar" %>
       <div>
+      <div class="container">
+        <%= toastr_flash.html_safe %>
+      </div>
   </body>
 </html>

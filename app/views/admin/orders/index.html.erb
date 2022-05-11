@@ -66,20 +66,20 @@
 
           <%= search_form_for @q, url: admin_orders_path do |f| %>
             <div class="row">
-              <div class="col-lg-2">
+              <div class="col-sm-2">
                 <%= f.search_field :user_name_or_id_eq, placeholder: "id, tên,...", class: "form-control", style: "margin-top: 25px" %>
               </div>
 
-              <div class="col-lg-2">
+              <div class="col-sm-2">
                 <%= f.label t "from_date" %>
                 <%= f.date_field :created_at_gteq, class: "form-control" %>
               </div>
               <!-- /.col-lg-6 -->
-              <div class="col-lg-2">
+              <div class="col-sm-2">
                 <%= f.label t "to_date" %>
                 <%= f.date_field :created_at_lteq, class: "form-control" %>
               </div>
-              <div class="col-lg-2" style="padding-right: 5px">
+              <div class="col-sm-2" style="padding-right: 5px">
                 <%= f.label "Trạng thái" %>
                 <%= f.select :status_eq, options_for_select(Order.statuses.map {|k, v| [I18n.t("order_status.#{k}"), v]}.to_a, @q.status_eq), {},class: "form-control" %>
               </div>

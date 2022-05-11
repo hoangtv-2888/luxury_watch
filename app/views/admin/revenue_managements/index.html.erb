@@ -1,14 +1,73 @@
-<div class="container">
-  <div class="statistics">
+<div class="row">
+  <div class="statistics col-sm-6">
     <%= line_chart @orders,
         title: t("statistics_products"),
         xtitle: t("day_of_the_week"),
         ytitle: t("quantity") %>
   </div>
-  <div class="statistics">
+
+  <div class="statistics col-sm-6">
     <%= line_chart @users,
         title: t("statistics_users"),
         xtitle: t("day_of_the_week"),
         ytitle: t("quantity") %>
   </div>
+</div>
+<section class="content">
+  <div class="row">
+    <div class="small-box bg-aqua col-sm-6">
+      <div class="inner">
+        <h3><%= OrderDetail.where(created_at: (Date.today.beginning_of_week.midnight)...Time.now.midnight + 1.day).sum(:quantity)%><sup style="font-size: 20px">sp</sup> 
+          <span style="font-size: 25px"> Doanh thu <%= number_to_currency OrderDetail.where(created_at: (Date.today.beginning_of_week.midnight)...Time.now.midnight + 1.day).sum("price_at_order * quantity").to_i %></span>
+        </h3>
+
+        <p>Sản phẩm đã bán tuần này (<%= Date.today.beginning_of_week %> - <%= Date.today %>)</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+
+    <div class="small-box bg-green col-sm-6">
+      <div class="inner">
+        <h3><%= OrderDetail.where(created_at: (Date.today.beginning_of_month.midnight)...Time.now.midnight + 1.day).sum(:quantity) %><sup style="font-size: 20px">sp</sup>
+          <span style="font-size: 25px"> Doanh thu <%= number_to_currency OrderDetail.where(created_at: (Date.today.beginning_of_month.midnight)...Time.now.midnight + 1.day).sum("price_at_order * quantity").to_i %></span>
+        </h3>
+
+        <p>Sản phẩm đã bán tháng này (<%= Date.today.beginning_of_month %> - <%= Date.today %>)</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-stats-bars"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="row" style="background: #fff; min-height: 90px; box-shadow: 0 1px 1px rgb(0 0 0 / 10%);">
+    <div class="col-sm-6">
+      <%= search_form_for @q, url: admin_revenue_managements_path do |f| %>
+        <div class="row">
+          <div class="col-sm-5">
+            <%= f.label t "from_date" %>
+            <%= f.date_field :created_at_gteq, class: "form-control" %>
+          </div>
+          <!-- /.col-lg-6 -->
+          <div class="col-sm-5">
+            <%= f.label t "to_date" %>
+            <%= f.date_field :created_at_lteq, class: "form-control" %>
+          </div>
+          <%= f.submit "Thống kê", class: "btn btn-primary mb-2", style: "margin-top: 25px" %>
+          <!-- /.col-lg-6 -->
+        </div>
+      <% end %>
+    </div>
+    <% if @order_detail.any? %>
+      <div class="col-sm-6" style="background-color: #f39c12; min-height: 90px">
+        <h3 style="line-height: 90px; height: 90px; color: #fff; margin: 0px 5px"> <%= @order_detail.sum(:quantity) %> sản phẩm đã bán doanh thu <%= number_to_currency @order_detail.sum("price_at_order * quantity").to_i %></h3>
+      </div>
+    <% end %>
+
+  </div>
+
 </div>

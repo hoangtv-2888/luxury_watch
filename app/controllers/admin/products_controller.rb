@@ -3,7 +3,9 @@ class Admin::ProductsController < Admin::AdminController
 
   def index
     @q = Product.includes(:product_detail).newest.ransack(params[:q])
-    @pagy, @products = pagy @q.result
+    # @pagy, @products = pagy @q.result
+    
+    @pagy, @products = pagy @q.result.or(Product.includes(:product_detail).ransack(id_eq: params.dig(:q, :name_cont)).result)
   end
 
   def new
