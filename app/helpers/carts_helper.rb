@@ -43,7 +43,7 @@ module CartsHelper
   def check_product_cart id
     product = ProductDetail.find_by(id: id)
     unless product
-      flash[:danger] = t "not_found"
+      flash[:error] = t "not_found"
       delete_item_cart id
     end
     product

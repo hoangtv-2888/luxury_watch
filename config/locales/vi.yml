@@ -138,6 +138,10 @@ vi:
         price: "Giá"
         quantity: "Số lượng"
         images: "Hình ảnh"
+      user:
+        password: "Mật khẩu"
+        password_confirmation: "Xác nhận mật khẩu"
+
   admin:
     title: "Danh sách người dùng"
     detail_user: "Chi tiết người dùng"

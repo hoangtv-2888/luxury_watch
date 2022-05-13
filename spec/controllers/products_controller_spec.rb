@@ -19,7 +19,7 @@ RSpec.describe ProductsController, type: :controller do
         get :show, params: {id: -1}
       end
       it "should flash danger" do
-        expect(flash[:danger]).to eq I18n.t("not_found")
+        expect(flash[:error]).to eq I18n.t("not_found")
       end
       it "should redirect to root_path" do
         expect(response).to redirect_to root_path

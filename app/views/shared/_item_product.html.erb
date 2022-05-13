@@ -1,6 +1,8 @@
 <div class="col-md-3 product-left">
   <div class="product-main simpleCart_shelfItem">
-    <%= image_tag product.display_image(product.images.first) if product.images.attached? %>
+    <% if product.images.attached? %>
+      <%= image_tag product.display_image(product.images.first), class: "zoom" %>
+    <% end %>
     <div class="product-bottom">
       <h3 style="text-align:center"><%= link_to product.name, product %></h3>
       <div style="display: flex; justify-content: center">

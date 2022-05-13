@@ -15,7 +15,7 @@ RSpec.describe OrdersController, type: :controller do
         end
 
         it "display flash danger" do
-          expect(flash[:danger]).to eq I18n.t("please_login")
+          expect(flash[:error]).to eq I18n.t("please_login")
         end
       end
     end
@@ -52,7 +52,7 @@ RSpec.describe OrdersController, type: :controller do
         end
 
         it "display flash danger" do
-          expect(flash[:danger]).to eq I18n.t("not_found")
+          expect(flash[:error]).to eq I18n.t("not_found")
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe OrdersController, type: :controller do
         end
 
         it "display flash danger" do
-          expect(flash[:danger]).to eq I18n.t("please_login")
+          expect(flash[:error]).to eq I18n.t("please_login")
         end
       end
     end
@@ -106,7 +106,7 @@ RSpec.describe OrdersController, type: :controller do
           expect(response).to redirect_to root_url
         end
         it "display flash danger" do
-          expect(flash[:danger]).to eq I18n.t("not_found")
+          expect(flash[:error]).to eq I18n.t("not_found")
         end
       end
     end
@@ -169,7 +169,7 @@ RSpec.describe OrdersController, type: :controller do
       end
 
       it "flash display error" do
-        expect(flash.now[:danger]).to eq I18n.t("error")
+        expect(flash.now[:error]).to eq I18n.t("error")
       end
 
       it "redirect to root_url" do

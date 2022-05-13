@@ -30,7 +30,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
         post :create, params:{category: {name: ""}}
       end
       it "should flash danger message" do
-        expect(flash[:danger]).to eq I18n.t("error")
+        expect(flash[:error]).to eq I18n.t("error")
       end
       it "should render new" do
         expect(subject).to render_template :new
@@ -64,7 +64,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
       end
       it "should flash danger" do
-        expect(flash[:danger]).to eq I18n.t("error")
+        expect(flash[:error]).to eq I18n.t("error")
       end
       it "should render edit" do
         expect(subject).to render_template :edit

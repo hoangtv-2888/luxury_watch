@@ -68,7 +68,7 @@ class OrdersController < ApplicationController
 
   def handle_exception exception
     log exception
-    flash.now[:danger] = t "error"
+    flash.now[:error] = t "error"
     redirect_to root_url
   end
 

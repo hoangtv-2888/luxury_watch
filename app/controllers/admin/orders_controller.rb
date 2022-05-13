@@ -20,7 +20,7 @@ class Admin::OrdersController < Admin::AdminController
       send_mail @order
       flash[:success] = t "success"
     else
-      flash[:danger] = t "error"
+      flash[:error] = t "error"
     end
     redirect_back fallback_location: admin_orders_path
   end

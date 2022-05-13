@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
   def load_product
     @product = Product.includes(:product_detail).find_by id: params[:id]
     unless @product
-      flash[:danger] = t "not_found"
+      flash[:error] = t "not_found"
       return redirect_to root_path
     end
     @product_color = Array.new

@@ -4,7 +4,7 @@ class CommentRatesController < ApplicationController
 
   def create
     @comment = current_user.comment_rates.build comment_params
-    @comment.save ? flash[:success] = t("success") : flash[:danger] = t("error")
+    @comment.save ? flash[:success] = t("success") : flash[:error] = t("error")
     redirect_back fallback_location: root_path
   end
 
@@ -12,7 +12,7 @@ class CommentRatesController < ApplicationController
     if @comment_rate.destroy
       flash[:success] = t "success"
     else
-      flash[:danger] = t "error"
+      flash[:error] = t "error"
     end
     redirect_back fallback_location: root_path
   end

@@ -37,17 +37,17 @@ class ApplicationController < ActionController::Base
     @user = User.find_by id: params[:id]
     return if @user
 
-    flash[:danger] = t "find_fail"
+    flash[:error] = t "find_fail"
     redirect_to root_url
   end
 
   def access_denied
-    flash[:danger] = t "not_permission"
+    flash[:error] = t "not_permission"
     redirect_to root_path
   end
 
   def not_found
-    flash[:danger] = t "not_found"
+    flash[:error] = t "not_found"
     redirect_to root_path
   end
 end

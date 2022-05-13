@@ -24,8 +24,9 @@ class Admin::ProductsController < Admin::AdminController
       redirect_to admin_product_path @product
     end
   rescue StandardError => e
-    flash.now[:danger] = e
+    flash[:error] = e
     render :new
+
   end
 
   def edit; end
@@ -40,7 +41,7 @@ class Admin::ProductsController < Admin::AdminController
       redirect_to admin_product_path @product
     end
   rescue StandardError => e
-    flash.now[:danger] = e
+    flash.now[:error] = e
     render :edit
   end
 
@@ -50,7 +51,7 @@ class Admin::ProductsController < Admin::AdminController
     if @product.destroy
       flash[:success] = t "success"
     else
-      flash[:danger] = t "error"
+      flash[:error] = t "error"
     end
     redirect_to admin_products_path
   end
