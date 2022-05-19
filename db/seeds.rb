@@ -23,9 +23,9 @@ Category.all.pluck(:name, :id).each do |name, id|
   end
 end
 
-ProductSize.create(size: "38", desc: "")
-ProductSize.create(size: "40", desc: "")
-ProductSize.create(size: "42", desc: "")
+ProductSize.create(size: "Nhỏ", desc: "")
+ProductSize.create(size: "Vừa", desc: "")
+ProductSize.create(size: "Rộng", desc: "")
 
 ProductColor.create(color: "White", desc: "")
 ProductColor.create(color: "Black", desc: "")
@@ -103,7 +103,7 @@ User.create!(name: "việt hoàng",
   name = Faker::Name.name
   email = "sss-#{n+1}@railstutorial.org"
   password = "password"
-  address = "quang nam"
+  address = "Xuân Hoà, Xuân Trường, Nam Định"
   phone = "023859835"
   User.create!(name: name,
               address: address,
@@ -112,7 +112,8 @@ User.create!(name: "việt hoàng",
               password: password,
               password_confirmation: password,
               confirmed_at: Time.now,
-              role: 0)
+              role: 0,
+              created_at: Time.zone.now - rand(1..7).day)
 end
 
 50.times do
@@ -146,7 +147,8 @@ Discount.create!(
     odt = order.order_details.create(quantity: n+1,
                                     price_at_order: prdt.price,
                                     order_id: order.id,
-                                    product_detail_id: prdt.id)
+                                    product_detail_id: prdt.id,
+                                    created_at: Time.zone.now - rand(1..7).day)
 
   end
 end

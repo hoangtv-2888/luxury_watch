@@ -72,12 +72,12 @@
 
               <div class="col-sm-2">
                 <%= f.label t "from_date" %>
-                <%= f.date_field :created_at_gteq, class: "form-control" %>
+                <%= f.datetime_field :created_at_gteq, class: "form-control" %>
               </div>
               <!-- /.col-lg-6 -->
               <div class="col-sm-2">
                 <%= f.label t "to_date" %>
-                <%= f.date_field :created_at_lteq, class: "form-control" %>
+                <%= f.datetime_field :created_at_lteq, class: "form-control" %>
               </div>
               <div class="col-sm-2" style="padding-right: 5px">
                 <%= f.label "Trạng thái" %>
